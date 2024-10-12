@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import QueryProvider from "@/components/QueryProvider";
+import ClientLayout from "@/components/common/ClientLayout";
+import "antd/dist/reset.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <QueryProvider>
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntdRegistry>
+            <ClientLayout>{children}</ClientLayout>
+          </AntdRegistry>
         </QueryProvider>
       </body>
     </html>
