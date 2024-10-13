@@ -3,6 +3,7 @@ import { Table } from "antd";
 import React, { memo } from "react";
 import userTableColumns from "./userTableColumns";
 import usePagination from "@/lib/hooks/usePagination";
+import { useRouter } from "next/navigation";
 
 type Props = {
   totalPages: number;
@@ -12,15 +13,20 @@ type Props = {
 
 // Memoized this component to avoid re-rendering on the query changes
 const UsersTable = memo(({ users, totalPages, isLoading }: Props) => {
+  const router = useRouter();
   const { currentPage, currentPageSize, handlePaginationChange } =
     usePagination();
+
+  const navigateToUserDetailsPage = (id: number) => {
+    router.push(`/users/${id}`);
+  };
 
   return (
     <Table
       rowClassName={"hoverable"}
       columns={userTableColumns}
       dataSource={users}
-      onRow={(user) => ({ onClick: () => console.log({ user }) })}
+      onRow={(user) => ({ onClick: () => navigateToUserDetailsPage(user.id) })}
       pagination={{
         total: totalPages,
         current: currentPage,

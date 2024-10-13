@@ -1,4 +1,4 @@
-import { getUsers, searchUsers } from "@/services/users";
+import { getUser, getUsers, searchUsers } from "@/services/users";
 import { GetUsersParams, SearchUsersParams } from "@/types/users";
 import {
   keepPreviousData,
@@ -28,4 +28,8 @@ export const useSearchUsers = (
     placeholderData: keepPreviousData,
     enabled,
   });
+};
+
+export const useUserDetails = (id: string | number) => {
+  return useQuery({ queryKey: ["users", id], queryFn: () => getUser(id) });
 };
