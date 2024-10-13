@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useDeferredValue, useEffect, useState } from "react";
 import { Layout } from "antd";
 
 import HeaderAndSearch from "@/components/users/HeaderAndSearch";
@@ -18,7 +18,10 @@ const UsersListPage = () => {
   const limit = currentPageSize;
   const skip = (currentPage - 1) * currentPageSize;
   const debouncedQuery = useDebounce(query, 500);
-  const isTypedQuery = !!query;
+  // smooth typing experience since this hook provide feature that defer updating the part of UI
+  const deferredQuery = useDeferredValue(query);
+  // will defer updating this value since we calculated based on deferred query
+  const isTypedQuery = !!deferredQuery;
 
   const { data: usersData, isFetching: isFetchingUsers } = useGetUsers(
     {
@@ -55,7 +58,7 @@ const UsersListPage = () => {
       <HeaderAndSearch query={query} onQueryChange={handleQueryChange} />
       <UsersTable
         totalPages={totalPages}
-        isLoading={isFetchingUsers || isSearchingUsers}
+        isLoading={isTypedQuery ? isSearchingUsers : isFetchingUsers}
         users={isTypedQuery ? searchedUsersData?.users : usersData?.users}
       />
     </Layout>

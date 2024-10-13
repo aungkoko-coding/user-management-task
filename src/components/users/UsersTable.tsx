@@ -34,7 +34,7 @@ const UsersTable = memo(({ users, totalPages, isLoading }: Props) => {
         onChange: handlePaginationChange,
       }}
       loading={isLoading}
-      scroll={{ y: "calc(100vh - 190px)" }}
+      scroll={{ y: "calc(100vh - 180px)", x: 1000 }}
     />
   );
 });

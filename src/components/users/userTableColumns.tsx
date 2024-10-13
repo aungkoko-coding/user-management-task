@@ -25,11 +25,13 @@ const userTableColumns: TableProps<User>["columns"] = [
     title: "First Name",
     dataIndex: "firstName",
     key: "firstName",
+    width: 150,
   },
   {
     title: "Last Name",
     dataIndex: "lastName",
     key: "lastName",
+    width: 150,
   },
   {
     title: "Maiden Name",
@@ -39,36 +41,42 @@ const userTableColumns: TableProps<User>["columns"] = [
     width: 150,
   },
   {
+    title: "Role",
+    dataIndex: "role",
+    key: "role",
+    className: "capitalize",
+    width: 150,
+  },
+  {
     title: "Gender",
     dataIndex: "gender",
     key: "gender",
-    render: (gender) => (
-      <Typography style={{ textTransform: "capitalize" }}>{gender}</Typography>
-    ),
+    className: "capitalize",
+    width: 150,
   },
   {
     title: "Age",
     dataIndex: "age",
     key: "age",
+    width: 100,
   },
   {
     title: "Birth Date",
     dataIndex: "birthDate",
     key: "birthDate",
-
-    render: (birthDate) => (
-      <Typography>{dayjs(birthDate).format("DD MMM YYYY")}</Typography>
-    ),
+    render: (birthDate) => dayjs(birthDate).format("DD MMM YYYY"),
+    width: 150,
   },
   {
     title: "Address",
     dataIndex: "address",
     key: "address",
     render: (address) => (
-      <Typography>
+      <>
         {address.city}, {address.state} ({address.country})
-      </Typography>
+      </>
     ),
+    width: 200,
   },
 ];
 

@@ -9,9 +9,12 @@ type Props = {
 
 const HeaderAndSearch = ({ query, onQueryChange }: Props) => {
   return (
-    <Flex gap={2} align="center" style={{ padding: "0px 0px" }}>
-      <Typography.Title style={{ width: "fit-content", flexShrink: 0 }}>
-        Users List
+    <Flex gap={2} align="center" style={{ padding: "5px 0px" }}>
+      <Typography.Title
+        level={2}
+        style={{ width: "fit-content", flexShrink: 0 }}
+      >
+        Users Table
       </Typography.Title>
       <Input
         value={query}

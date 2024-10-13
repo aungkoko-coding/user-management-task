@@ -1,3 +1,7 @@
 .hoverable {
   cursor: pointer;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}
