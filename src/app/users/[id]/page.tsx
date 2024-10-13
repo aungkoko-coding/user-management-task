@@ -14,6 +14,7 @@ import Address from "@/components/users/details/Address";
 import Work from "@/components/users/details/Work";
 import Banking from "@/components/users/details/Banking";
 import { placeholderImageUrl } from "@/constants/users";
+import { AxiosError } from "axios";
 
 type Props = {
   params: { id: string };
@@ -26,7 +27,7 @@ const UserDetailsPage = ({ params: { id } }: Props) => {
     token: { colorBgLayout },
   } = theme.useToken();
 
-  const { data: user, isLoading } = useUserDetails(id);
+  const { data: user, isLoading, isError, error } = useUserDetails(id);
 
   const goBack = () => {
     router.back();
@@ -34,7 +35,11 @@ const UserDetailsPage = ({ params: { id } }: Props) => {
 
   if (isLoading) return <Spin fullscreen size="large" />;
 
-  if (!user) notFound();
+  if (!user) {
+    if (isError && (error as AxiosError).status === 404) notFound();
+
+    throw new Error(error?.message || `Failed to fetch user with id "${id}".`);
+  }
 
   const { image, firstName, lastName, role } = user;
 

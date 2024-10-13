@@ -1,10 +1,6 @@
 import { getUser, getUsers, searchUsers } from "@/services/users";
 import { GetUsersParams, SearchUsersParams } from "@/types/users";
-import {
-  keepPreviousData,
-  type QueryOptions,
-  useQuery,
-} from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 export const useGetUsers = (
   params: GetUsersParams,
