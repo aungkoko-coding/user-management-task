@@ -39,4 +39,6 @@ const UsersTable = memo(({ users, totalPages, isLoading }: Props) => {
   );
 });
 
+UsersTable.displayName = "UsersTable";
+
 export default UsersTable;

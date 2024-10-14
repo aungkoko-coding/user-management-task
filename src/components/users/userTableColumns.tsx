@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Typography } from "antd";
 import type { TableProps } from "antd";
 import { User } from "@/types/users";
 import dayjs from "dayjs";
